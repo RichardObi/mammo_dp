@@ -1,0 +1,26 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pydicom = "*"
+numpy = "*"
+pandas = "*"
+torch = "==1.7.0"
+torchvision = "==0.8.1"
+matplotlib = "*"
+opencv-python = "==4.5.1.48"
+scikit-learn = "*"
+scikit-image = "*"
+tqdm = "*"
+dacite = "*"
+pyyaml = "*"
+deprecation = "*"
+timm = "*"
+pyradiomics= "*" #{git = "https://github.com/faildeny/pyradiomics/archive/master.zip"}
+
+[requires]
+python_version = "3.9.0"
+
+[dev-packages]

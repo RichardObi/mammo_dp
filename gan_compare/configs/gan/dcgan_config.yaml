@@ -1,0 +1,78 @@
+
+########### GAN type ###########
+gan_type: dcgan # which GAN type to train, e.g. "lsgan", "dcgan", "wgangp"
+
+########### Network Hyperparams ###########
+leakiness: 0.1
+lr_g: 0.0001
+lr_d1: 0.0001
+lr_d2: 0.0001
+beta1: 0.5
+nz: 100
+weight_decay: 0
+num_epochs: 3000
+ndf: 64
+ngf: 64
+batch_size: 8 #16
+image_size: 128 #128 #224
+use_lsgan_loss: False
+switch_loss_each_epoch: False
+kernel_size: 6
+use_one_sided_label_smoothing: True
+
+########### Hardware & I/O ###########
+workers: 2
+ngpu: 1
+num_epochs_before_gan_storage: 500
+num_epochs_between_gan_storage: 10
+
+########### Training Dataset ###########
+metadata_path: all_metadata_bcdr_without_healthy.json #setup/all_metadata_w_cbis_ddsm.json
+split_path: None #setup/train_test_val_split_ext.json #setup/example_split.json
+data:
+  train:
+    dataset_names:
+      #- inbreast
+      - bcdr
+      #- cbis-ddsm
+    roi_types:
+      - mass
+  val:
+    dataset_names:
+      #- inbreast
+      - bcdr
+      #- cbis-ddsm
+    roi_types:
+      - mass
+  test:
+    dataset_names:
+      #- inbreast
+      - bcdr
+      #- cbis-ddsm
+    roi_types:
+      - mass
+is_training_data_augmented: False #True #Changed to false to extract data on 16062024
+
+########### Preprocessing ###########
+zoom_offset:  0.05  # 0.2 # the higher, the more likely the patch is zoomed out. if 0, no offset. negative means, patch is rather zoomed in
+zoom_spread: 0.05  # 0.33 # the higher, the more variance in zooming. Must be greater or equal 0. with 0. being minimal variance.
+ratio_spread:  0.05  # 0.05 # coefficient for how much to spread the ratio between height and width. the higher, the more spread.
+translation_spread: 0.05  # 0.25 # the higher, the more variance in translation. Must be greater or equal 0. with 0. being minimal variance.
+max_translation_offset: 0.05 # 0.33 # coefficient relative to the image size.
+
+########### Pretraining of Dual Discriminator ###########
+model_name: None #One of the following: swin_transformer, None, cnn
+pretrain_classifier: False
+are_Ds_alternating_to_update_G: False
+start_training_D2_after_epoch: 0
+start_backprop_D2_into_G_after_epoch: 0
+
+########### Conditional GAN Training ###########
+conditioned_on: None #One of the following: density, birads, or None (None = other i.e. classes)
+conditional: True
+is_condition_binary: True
+is_condition_categorical: True
+split_birads_fours: False
+added_noise_term: 0. # relevant for adding some random noise for the condition label of the conditional GAN.
+classes: is_benign # if not conditioned_on "density" or "birads", the training_target + classes label will be used for GAN conditioning
+training_target: biopsy_proven_status # if not conditioned_on "density" or "birads", the training_target + classes label will be used for GAN conditioning

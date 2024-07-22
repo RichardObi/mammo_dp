@@ -1,0 +1,52 @@
+model_name: "swin_t_imagenet_frozen"
+batch_size: 128
+num_epochs: 300
+data:
+  train:
+    dataset_names:
+      - cbis-ddsm
+    roi_types:
+      - mass
+  val:
+    dataset_names:
+      - cbis-ddsm
+    roi_types:
+      - mass
+  test:
+    dataset_names:
+      - cbis-ddsm
+    roi_types:
+      - mass
+metadata_path: setup/all_metadata_w_cbis_ddsm.json
+split_path: setup/train_test_val_split_ext.json
+logfile_path: extension/dbr11/dbr/dbr11b.txt
+output_model_dir: extension/dbr11/dbr/model_checkpoint/
+
+pretrained_mode: freeze_no_weights #freeze_almost_all_weights
+pretrained_freeze_template: null
+pretrained_weights_path: extension/dbr13/dbr/model_checkpoint/best_classifier_seed43_06-17-2024_15-49-43.pt #best_classifier_seed43_06-17-2024_09-44-02.pt # Important, path to pretrained model for respective seed
+
+output_classification_result: csv
+train_shuffle_proportion: 0.5 # Seems to be not used anymore
+validation_shuffle_proportion: 0 # Seems to be not used anymore
+classes: is_benign
+training_target: biopsy_proven_status
+is_regression: False
+use_synthetic: False
+synthetic_data_dir: extension/synthetic_data/cbis-ddsm/c-dcgan
+training_sampling_proportion: 1.
+image_size: 224
+zoom_offset: 0  # the higher, the more likely the patch is zoomed out. if 0, no offset. negative means, patch is rather zoomed in
+zoom_spread: 0  # the higher, the more variance in zooming. Must be greater or equal 0. with 0. being minimal variance.
+ratio_spread: 0  # NOT IN USE ANYMORE. coefficient for how much to spread the ratio between height and width. the higher, the more spread.
+translation_spread: 0  # the higher, the more variance in translation. Must be greater or equal 0. with 0. being minimal variance.
+max_translation_offset: 0  # coefficient relative to the image size.
+optimizer_type: adamw
+clf_label_smoothing: 0.1
+clf_lr: 0.00001 # 10^-5 as in fine tuning experiment describe in swin paper p.6 https://arxiv.org/pdf/2103.14030.pdf #0.001
+clf_weight_decay: 0.00000001 # 10^-8 as in fine tuning experiment describe in swin paper p.6 https://arxiv.org/pdf/2103.14030.pdf #0.001
+########### DP params ###########
+use_dp: True
+dp_target_epsilon: 6.
+dp_target_delta: 0.0001 #1e-04
+dp_max_grad_norm: 1.
