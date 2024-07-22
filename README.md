@@ -1,6 +1,5 @@
 
-## [Enhancing the Utility of Privacy-Preserving Cancer Classification using Synthetic Data
-](https://arxiv.org/abs/2407.12669)
+## [Enhancing the Utility of Privacy-Preserving Cancer Classification using Synthetic Data](https://arxiv.org/abs/2407.12669)
 
 In [MICCAI 2024 Deep Breast Workshop](https://deep-breath-miccai.github.io/) on AI and Imaging for Diagnostic and Treatment Challenges in Breast Care.
 
@@ -73,4 +72,4 @@ Please consider citing our work if you found it useful for your research:
 
 
 ## Acknowledgements
-This repository borrows and extends the code from the [mammo_gans repository](https://github.com/zuzaanto/mammo_gans). 
+This repository borrows and extends the code from the [mammo_gans repository](https://github.com/zuzaanto/mammo_gans_iwbi2022). 
