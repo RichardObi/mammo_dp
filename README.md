@@ -58,6 +58,11 @@ generators.generate(model_id='00008_C-DCGAN_MMG_MASSES', num_samples=1000, insta
 - [FRD metric](https://github.com/RichardObi/frd-score) used in the paper to evaluate the synthetic data based on radiomics imaging biomarker variability between real and synthetic image distributions.
 
 
+
+## Summary
+![poster presentation](docs/poster.png)
+
+
 ## Reference
 Please consider citing our work if you found it useful for your research:
 ```bibtex
