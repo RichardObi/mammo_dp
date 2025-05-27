@@ -52,7 +52,7 @@ generators.generate(model_id='00008_C-DCGAN_MMG_MASSES', num_samples=1000, insta
 
 ### Synthesis Code
 - [Script](gan.sh) to create an environment and train the Malignancy-Conditioned GAN (MCGAN) e.g. used to then create the synthetic data reported in the [paper](https://arxiv.org/abs/2407.12669).
-- [Config](gan_compare/configs/gan/dcgan.yaml) to define the setup and hyperparameters for a MCGAN training run.
+- [Config](gan_compare/configs/gan/dcgan-config.yaml) to define the setup and hyperparameters for a MCGAN training run.
 - [Code](gan_compare/scripts/train_gan.py) to start an MCGAN training run.
 - [Code and Checkpoint](https://doi.org/10.5281/zenodo.6647349) that can be used for local setup to run inference of MCGAN (by running the __ init__.py file).
 - [FRD metric](https://github.com/RichardObi/frd-score) used in the paper to evaluate the synthetic data based on radiomics imaging biomarker variability between real and synthetic image distributions.
